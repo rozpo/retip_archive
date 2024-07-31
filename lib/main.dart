@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'core/l10n/retip_l10n.dart';
+
 void main() {
   runApp(const RetipApp());
 }
@@ -24,6 +26,8 @@ class RetipApp extends StatelessWidget {
         fontFamily: 'Play',
       ),
       home: const HomePage(),
+      localizationsDelegates: RetipL10n.localizationsDelegates,
+      supportedLocales: RetipL10n.supportedLocales,
     );
   }
 }
@@ -34,14 +38,11 @@ class HomePage extends StatelessWidget {
   final String asset =
       'assets/${kDebugMode ? 'debug' : 'release'}/images/logo.svg';
 
-  final String text =
-      "If you think that in the era of streaming, the art of offline listening to music has not disappeared. It's a sure sign that you need a RETIP!";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Retip Music Player'),
+        title: Text(RetipL10n.of(context).retipTitle),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -55,7 +56,7 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             Text(
-              text,
+              RetipL10n.of(context).retipMotto,
               textAlign: TextAlign.center,
             ),
           ],
