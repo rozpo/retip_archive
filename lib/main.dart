@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:on_audio_query/on_audio_query.dart';
 
 import 'app/pages/home/home_page.dart';
 import 'core/l10n/retip_l10n.dart';
@@ -25,9 +24,7 @@ class RetipApp extends StatelessWidget {
         brightness: Brightness.dark,
         fontFamily: 'Play',
       ),
-      home: HomePage(
-        audioQuery: OnAudioQuery(),
-      ),
+      home: const HomePage(),
       localizationsDelegates: RetipL10n.localizationsDelegates,
       supportedLocales: RetipL10n.supportedLocales,
     );
