@@ -7,9 +7,12 @@
     "playlists": "Playlists",
     "home": "Home",
     "library": "Library",
+    "favorite": "Favorite",
+    "settings": "Settings",
     "@_MUSIC_LIBRARY": {},
     "genres": "Genres",
     "artists": "Artists",
     "albums": "Albums",
-    "songs": "Songs"
+    "songs": "Songs",
+    "@_END": {}
 }

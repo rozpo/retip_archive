@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:retip/core/l10n/retip_l10n.dart';
 
-class RetipLayout extends StatelessWidget {
+class RetipLayout extends StatefulWidget {
   final String title;
   final Widget body;
 
@@ -10,6 +10,13 @@ class RetipLayout extends StatelessWidget {
     required this.body,
     super.key,
   });
+
+  @override
+  State<RetipLayout> createState() => _RetipLayoutState();
+}
+
+class _RetipLayoutState extends State<RetipLayout> {
+  int index = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,7 @@ class RetipLayout extends StatelessWidget {
       length: tabs.length,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          title: Text(widget.title),
           bottom: TabBar(
             isScrollable: false,
             tabs: tabs.map((tab) => Tab(text: tab)).toList(),
@@ -36,11 +43,22 @@ class RetipLayout extends StatelessWidget {
             ),
           ],
         ),
-        body: body,
+        body: widget.body,
         bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 0,
+          showUnselectedLabels: true,
+          currentIndex: index,
           selectedItemColor: Theme.of(context).colorScheme.primary,
+          unselectedItemColor: Theme.of(context).colorScheme.outline,
+          onTap: (value) {
+            index = value;
+            setState(() {});
+          },
           items: [
+            BottomNavigationBarItem(
+              activeIcon: const Icon(Icons.favorite),
+              icon: const Icon(Icons.favorite_outline),
+              label: RetipL10n.of(context).favorite,
+            ),
             BottomNavigationBarItem(
               activeIcon: const Icon(Icons.queue_music),
               icon: const Icon(Icons.queue_music_outlined),
@@ -55,6 +73,11 @@ class RetipLayout extends StatelessWidget {
               activeIcon: const Icon(Icons.library_music),
               icon: const Icon(Icons.library_music_outlined),
               label: RetipL10n.of(context).library,
+            ),
+            BottomNavigationBarItem(
+              activeIcon: const Icon(Icons.settings),
+              icon: const Icon(Icons.settings_outlined),
+              label: RetipL10n.of(context).settings,
             ),
           ],
         ),
