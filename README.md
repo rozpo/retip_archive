@@ -1,5 +1,9 @@
 # Retip Music Player
 
+<p align="left">
+    <img src="assets/release/images/logo.svg" width="200">
+</p>
+
 Retip is a beautiful and intuitive music player built using the Flutter. It provides a seamless and immersive experience for music enthusiasts, allowing them to enjoy their favorite tracks with ease.
 
 > *"If you think that in the era of streaming, the art of offline listening to music has not disappeared. It's a sure sign that you need a RETIP!"*

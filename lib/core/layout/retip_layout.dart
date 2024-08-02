@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:retip/app/pages/favorite/favorite_page.dart';
+import 'package:retip/app/pages/home/home_page.dart';
+import 'package:retip/app/pages/library/library_page.dart';
+import 'package:retip/app/pages/playlist/playlist_page.dart';
+import 'package:retip/app/pages/settings/settings_page.dart';
 import 'package:retip/core/l10n/retip_l10n.dart';
 
 class RetipLayout extends StatefulWidget {
@@ -17,7 +23,11 @@ class RetipLayout extends StatefulWidget {
 }
 
 class _RetipLayoutState extends State<RetipLayout> {
-  int index = 2;
+  int index = 1;
+
+  final PageController pageController = PageController(
+    initialPage: 1,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -31,20 +41,29 @@ class _RetipLayoutState extends State<RetipLayout> {
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          bottom: TabBar(
-            isScrollable: false,
-            tabs: tabs.map((tab) => Tab(text: tab)).toList(),
-          ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.grid_view_outlined),
-              onPressed: () {},
-            ),
+        // appBar: AppBar(
+        //   title: Text(widget.title),
+        //   bottom: TabBar(
+        //     isScrollable: false,
+        //     tabs: tabs.map((tab) => Tab(text: tab)).toList(),
+        //   ),
+        //   actions: [
+        //     IconButton(
+        //       icon: const Icon(Icons.grid_view_outlined),
+        //       onPressed: () {},
+        //     ),
+        //   ],
+        // ),
+        body: PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: pageController,
+          scrollDirection: Axis.horizontal,
+          children: [
+            const LibraryPage(),
+            HomePage(audioPlayer: AudioPlayer()),
+            const SettingsPage(),
           ],
         ),
-        body: widget.body,
         bottomNavigationBar: BottomNavigationBar(
           showUnselectedLabels: true,
           currentIndex: index,
@@ -52,18 +71,19 @@ class _RetipLayoutState extends State<RetipLayout> {
           unselectedItemColor: Theme.of(context).colorScheme.outline,
           onTap: (value) {
             index = value;
+            pageController.animateToPage(
+              index,
+              duration: const Duration(milliseconds: 200),
+              curve: Curves.linear,
+            );
+
             setState(() {});
           },
           items: [
             BottomNavigationBarItem(
-              activeIcon: const Icon(Icons.favorite),
-              icon: const Icon(Icons.favorite_outline),
-              label: RetipL10n.of(context).favorite,
-            ),
-            BottomNavigationBarItem(
-              activeIcon: const Icon(Icons.queue_music),
-              icon: const Icon(Icons.queue_music_outlined),
-              label: RetipL10n.of(context).playlists,
+              activeIcon: const Icon(Icons.library_music),
+              icon: const Icon(Icons.library_music_outlined),
+              label: RetipL10n.of(context).library,
             ),
             BottomNavigationBarItem(
               activeIcon: SvgPicture.asset(
@@ -85,11 +105,6 @@ class _RetipLayoutState extends State<RetipLayout> {
                 ),
               ),
               label: RetipL10n.of(context).home,
-            ),
-            BottomNavigationBarItem(
-              activeIcon: const Icon(Icons.library_music),
-              icon: const Icon(Icons.library_music_outlined),
-              label: RetipL10n.of(context).library,
             ),
             BottomNavigationBarItem(
               activeIcon: const Icon(Icons.settings),
