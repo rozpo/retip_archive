@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:retip/core/l10n/retip_l10n.dart';
 
 class RetipLayout extends StatelessWidget {
   final String title;
@@ -13,10 +14,10 @@ class RetipLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tabs = [
-      'Genres',
-      'Artists',
-      'Albums',
-      'Songs',
+      RetipL10n.of(context).genres,
+      RetipL10n.of(context).artists,
+      RetipL10n.of(context).albums,
+      RetipL10n.of(context).songs,
     ];
 
     return DefaultTabController(
@@ -38,21 +39,22 @@ class RetipLayout extends StatelessWidget {
         body: body,
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: 0,
-          items: const [
+          selectedItemColor: Theme.of(context).colorScheme.primary,
+          items: [
             BottomNavigationBarItem(
-              activeIcon: Icon(Icons.library_music),
-              icon: Icon(Icons.library_music_outlined),
-              label: 'Library',
+              activeIcon: const Icon(Icons.queue_music),
+              icon: const Icon(Icons.queue_music_outlined),
+              label: RetipL10n.of(context).playlists,
             ),
             BottomNavigationBarItem(
-              activeIcon: Icon(Icons.headphones),
-              icon: Icon(Icons.headphones_outlined),
-              label: 'Home',
+              activeIcon: const Icon(Icons.headphones),
+              icon: const Icon(Icons.headphones_outlined),
+              label: RetipL10n.of(context).home,
             ),
             BottomNavigationBarItem(
-              activeIcon: Icon(Icons.settings),
-              icon: Icon(Icons.settings_outlined),
-              label: 'Settings',
+              activeIcon: const Icon(Icons.library_music),
+              icon: const Icon(Icons.library_music_outlined),
+              label: RetipL10n.of(context).library,
             ),
           ],
         ),

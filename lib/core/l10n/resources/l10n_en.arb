@@ -1,5 +1,15 @@
 {
     "@@locale": "en",
+    "@_GLOBAL": {},
     "retipTitle": "Retip Music Player",
-    "retipMotto": "If you think that in the era of streaming, the art of offline listening to music has not disappeared. It's a sure sign that you need a RETIP!"
+    "retipMotto": "If you think that in the era of streaming, the art of offline listening to music has not disappeared. It's a sure sign that you need a RETIP!",
+    "@_BOTTOM_NAVIGATION": {},
+    "playlists": "Playlists",
+    "home": "Home",
+    "library": "Library",
+    "@_MUSIC_LIBRARY": {},
+    "genres": "Genres",
+    "artists": "Artists",
+    "albums": "Albums",
+    "songs": "Songs"
 }

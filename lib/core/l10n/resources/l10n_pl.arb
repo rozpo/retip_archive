@@ -1,5 +1,15 @@
 {
     "@@locale": "pl",
+    "@_GLOBAL": {},
     "retipTitle": "Odtwarzacz Muzyki Retip",
-    "retipMotto": "Jeśli myślisz, że w dobie streamingu sztuka słuchania muzyki offline nie zniknęła. To pewny znak, że potrzebujesz RETIPa!"
+    "retipMotto": "Jeśli myślisz, że w dobie streamingu sztuka słuchania muzyki offline nie zniknęła. To pewny znak, że potrzebujesz RETIPa!",
+    "@_BOTTOM_NAVIGATION": {},
+    "playlists": "Playlisty",
+    "home": "Start",
+    "library": "Biblioteka",
+    "@_MUSIC_LIBRARY": {},
+    "genres": "Gatunki",
+    "artists": "Artyści",
+    "albums": "Albumy",
+    "songs": "Utwory"
 }
