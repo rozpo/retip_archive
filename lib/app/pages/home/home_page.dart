@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:retip/app/pages/home/bloc/home_bloc.dart';
 import 'package:retip/core/l10n/retip_l10n.dart';
+import 'package:retip/core/layout/retip_layout.dart';
 
 class HomePage extends StatelessWidget {
   final AudioPlayer audioPlayer;
@@ -16,10 +17,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeBloc()..add(HomeRefreshEvent()),
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(RetipL10n.of(context).retipTitle),
-        ),
+      child: RetipLayout(
+        title: RetipL10n.of(context).retipTitle,
         body: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
             if (state is HomeIdleState) {
