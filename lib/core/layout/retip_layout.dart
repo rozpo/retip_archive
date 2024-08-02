@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:retip/core/l10n/retip_l10n.dart';
 
 class RetipLayout extends StatefulWidget {
@@ -65,8 +66,24 @@ class _RetipLayoutState extends State<RetipLayout> {
               label: RetipL10n.of(context).playlists,
             ),
             BottomNavigationBarItem(
-              activeIcon: const Icon(Icons.headphones),
-              icon: const Icon(Icons.headphones_outlined),
+              activeIcon: SvgPicture.asset(
+                'assets/common/icons/retip.svg',
+                width: 24,
+                height: 24,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.primary,
+                  BlendMode.srcIn,
+                ),
+              ),
+              icon: SvgPicture.asset(
+                'assets/common/icons/retip.svg',
+                width: 24,
+                height: 24,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.outline,
+                  BlendMode.srcIn,
+                ),
+              ),
               label: RetipL10n.of(context).home,
             ),
             BottomNavigationBarItem(
