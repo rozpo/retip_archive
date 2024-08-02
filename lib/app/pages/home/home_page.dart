@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:retip/app/pages/home/bloc/home_bloc.dart';
 import 'package:retip/core/l10n/retip_l10n.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final AudioPlayer audioPlayer;
+
+  const HomePage({
+    required this.audioPlayer,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +35,13 @@ class HomePage extends StatelessWidget {
                     return ListTile(
                       title: Text(song.title),
                       subtitle: song.artist != null ? Text(song.artist!) : null,
+                      onTap: () {
+                        if (song.uri != null) {
+                          audioPlayer.stop();
+                          audioPlayer.setUrl(song.uri!);
+                          audioPlayer.play();
+                        }
+                      },
                     );
                   },
                 ),
