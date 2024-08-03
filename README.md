@@ -30,4 +30,6 @@ See license [file](LICENSE)
 
 This music player is dedicated to my father, who inspired and encouraged me to explore the world of music. His love for melodies and his constant support have shaped my journey as a music enthusiast.
 
-This app is a tribute to his unwavering belief in the power of music to bring joy and inspiration. Thank you, Dad!
+This app is a tribute to his unwavering belief in the power of music to bring joy and inspiration.
+
+Thank you, Dad!
