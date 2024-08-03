@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:retip/app/pages/favorite/favorite_page.dart';
 import 'package:retip/app/pages/home/home_page.dart';
 import 'package:retip/app/pages/library/library_page.dart';
-import 'package:retip/app/pages/playlist/playlist_page.dart';
 import 'package:retip/app/pages/settings/settings_page.dart';
 import 'package:retip/core/l10n/retip_l10n.dart';
 
