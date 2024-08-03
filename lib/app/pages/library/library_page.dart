@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:retip/app/views/albums/albums_view.dart';
 import 'package:retip/app/views/artists/artists_view.dart';
-import 'package:retip/app/views/genres/genres_view.dart';
 import 'package:retip/app/views/songs/songs_view.dart';
 import 'package:retip/core/l10n/retip_l10n.dart';
 
@@ -14,7 +13,6 @@ class LibraryPage extends StatefulWidget {
 
 class _LibraryPageState extends State<LibraryPage> {
   final pages = const [
-    GenresView(),
     ArtistsView(),
     AlbumsView(),
     SongsView(),
@@ -29,7 +27,6 @@ class _LibraryPageState extends State<LibraryPage> {
           title: Text(RetipL10n.of(context).library),
           bottom: TabBar(
             tabs: [
-              Tab(text: RetipL10n.of(context).genres),
               Tab(text: RetipL10n.of(context).artists),
               Tab(text: RetipL10n.of(context).albums),
               Tab(text: RetipL10n.of(context).songs),
