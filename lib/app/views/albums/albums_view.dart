@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class AlbumsView extends StatefulWidget {
-  const AlbumsView({super.key});
+  final AudioPlayer player;
+
+  const AlbumsView({
+    required this.player,
+    super.key,
+  });
 
   @override
   State<AlbumsView> createState() => _AlbumsViewState();

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class SongsView extends StatefulWidget {
-  const SongsView({super.key});
+  final AudioPlayer player;
+
+  const SongsView({
+    required this.player,
+    super.key,
+  });
 
   @override
   State<SongsView> createState() => _SongsViewState();
@@ -39,6 +45,14 @@ class _SongsViewState extends State<SongsView> {
           );
         }
 
+        final playlist = ConcatenatingAudioSource(
+          children: item.data!.map(
+            (element) {
+              return AudioSource.uri(Uri.parse(element.uri!));
+            },
+          ).toList(),
+        );
+
         return ListView.builder(
           itemCount: item.data!.length,
           itemBuilder: (context, index) {
@@ -71,6 +85,17 @@ class _SongsViewState extends State<SongsView> {
                 id: item.data![index].id,
                 type: ArtworkType.AUDIO,
               ),
+              onTap: () {
+                widget.player.stop();
+
+                widget.player.setAudioSource(
+                  playlist,
+                  initialIndex: index,
+                  initialPosition: Duration.zero,
+                );
+
+                widget.player.play();
+              },
             );
           },
         );

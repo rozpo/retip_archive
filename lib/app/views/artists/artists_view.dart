@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class ArtistsView extends StatefulWidget {
-  const ArtistsView({super.key});
+  final AudioPlayer player;
+
+  const ArtistsView({
+    required this.player,
+    super.key,
+  });
 
   @override
   State<ArtistsView> createState() => _ArtistsViewState();
@@ -38,6 +44,7 @@ class _ArtistsViewState extends State<ArtistsView> {
             child: Text("Nothing found!"),
           );
         }
+
 
         return ListView.builder(
           itemCount: item.data!.length,
