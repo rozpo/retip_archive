@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:retip/app/pages/home/home_page.dart';
 import 'package:retip/app/pages/intro/bloc/intro_bloc.dart';
 import 'package:retip/core/l10n/retip_l10n.dart';
@@ -21,9 +20,7 @@ class IntroPage extends StatelessWidget {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
                   builder: (context) {
-                    return HomePage(
-                      audioPlayer: AudioPlayer(),
-                    );
+                    return const HomePage();
                   },
                 ),
               );

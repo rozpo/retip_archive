@@ -58,7 +58,7 @@ class _RetipLayoutState extends State<RetipLayout> {
           scrollDirection: Axis.horizontal,
           children: [
             const LibraryPage(),
-            HomePage(audioPlayer: AudioPlayer()),
+            // HomePage(audioPlayer: AudioPlayer()),
             const SettingsPage(),
           ],
         ),
