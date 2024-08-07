@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class SongsView extends StatefulWidget {
@@ -48,7 +49,18 @@ class _SongsViewState extends State<SongsView> {
         final playlist = ConcatenatingAudioSource(
           children: item.data!.map(
             (element) {
-              return AudioSource.uri(Uri.parse(element.uri!));
+              return AudioSource.uri(
+                Uri.parse(element.uri!),
+                tag: MediaItem(
+                  id: '${element.id}',
+                  title: element.title,
+                  artist: element.artist,
+                  album: element.album,
+                  duration: element.duration != null
+                      ? Duration(seconds: element.duration!)
+                      : null,
+                ),
+              );
             },
           ).toList(),
         );
