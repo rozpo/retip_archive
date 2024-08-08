@@ -12,9 +12,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final PageController pageController = PageController();
+  static const _initialIndex = 1;
+  int index = _initialIndex;
 
-  int index = 1;
+  final PageController pageController = PageController(
+    initialPage: _initialIndex,
+  );
 
   @override
   void dispose() {
