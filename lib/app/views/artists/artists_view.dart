@@ -3,9 +3,11 @@ import 'package:just_audio/just_audio.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class ArtistsView extends StatefulWidget {
+  final GlobalKey<NavigatorState> navigatorKey;
   final AudioPlayer player;
 
   const ArtistsView({
+    required this.navigatorKey,
     required this.player,
     super.key,
   });
@@ -45,7 +47,6 @@ class _ArtistsViewState extends State<ArtistsView> {
           );
         }
 
-
         return ListView.builder(
           itemCount: item.data!.length,
           itemBuilder: (context, index) {
@@ -61,6 +62,7 @@ class _ArtistsViewState extends State<ArtistsView> {
                 id: item.data![index].id,
                 type: ArtworkType.ARTIST,
               ),
+              onTap: () => widget.navigatorKey.currentState!.pushNamed('second'),
             );
           },
         );

@@ -19,6 +19,8 @@ class _HomePageState extends State<HomePage> {
     initialPage: _initialIndex,
   );
 
+  final _navigatorKey = GlobalKey<NavigatorState>();
+
   @override
   void dispose() {
     pageController.dispose();
@@ -30,14 +32,35 @@ class _HomePageState extends State<HomePage> {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      body: PageView(
-        controller: pageController,
-        physics: const NeverScrollableScrollPhysics(),
-        children: const [
-          LibraryPage(),
-          Placeholder(),
-          SettingsPage(),
-        ],
+      body: Navigator(
+        key: _navigatorKey,
+        initialRoute: 'main',
+        onGenerateRoute: (settings) {
+          final page = switch (settings.name) {
+            'main' => PageView(
+                controller: pageController,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  LibraryPage(navigatorKey: _navigatorKey),
+                  const Placeholder(),
+                  const SettingsPage(),
+                ],
+              ),
+            'second' => Scaffold(
+                body: Container(
+                  color: Colors.red,
+                ),
+              ),
+            _ => throw StateError('Unexpected route'),
+          };
+
+          return MaterialPageRoute(
+            builder: (context) {
+              return page;
+            },
+            settings: settings,
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
@@ -61,6 +84,10 @@ class _HomePageState extends State<HomePage> {
           setState(() {
             index = value;
           });
+
+          if (_navigatorKey.currentState!.canPop()) {
+            _navigatorKey.currentState!.pop();
+          }
 
           pageController.animateToPage(
             index,

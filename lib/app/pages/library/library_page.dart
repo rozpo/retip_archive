@@ -6,7 +6,12 @@ import 'package:retip/app/views/songs/songs_view.dart';
 import 'package:retip/core/l10n/retip_l10n.dart';
 
 class LibraryPage extends StatefulWidget {
-  const LibraryPage({super.key});
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  const LibraryPage({
+    required this.navigatorKey,
+    super.key,
+  });
 
   @override
   State<LibraryPage> createState() => _LibraryPageState();
@@ -19,7 +24,10 @@ class _LibraryPageState extends State<LibraryPage> {
   @override
   void initState() {
     pages.addAll([
-      ArtistsView(player: player),
+      ArtistsView(
+        player: player,
+        navigatorKey: widget.navigatorKey,
+      ),
       AlbumsView(player: player),
       SongsView(player: player),
     ]);
