@@ -3,6 +3,7 @@
     "storageAccess",
     "grantPermissionMsg",
     "openAppSettings",
-    "allow"
+    "allow",
+    "search"
   ]
 }

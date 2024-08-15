@@ -5,8 +5,10 @@ import 'package:on_audio_query/on_audio_query.dart';
 
 class SongsView extends StatefulWidget {
   final AudioPlayer player;
+  final String query;
 
   const SongsView({
+    required this.query,
     required this.player,
     super.key,
   });
@@ -46,8 +48,16 @@ class _SongsViewState extends State<SongsView> {
           );
         }
 
+        final data = item.data!.where(
+          (e) {
+            return e.title.toLowerCase().contains(
+                  widget.query.toLowerCase(),
+                );
+          },
+        ).toList();
+
         final playlist = ConcatenatingAudioSource(
-          children: item.data!.map(
+          children: data.map(
             (element) {
               return AudioSource.uri(
                 Uri.parse(element.uri!),
@@ -66,25 +76,21 @@ class _SongsViewState extends State<SongsView> {
         );
 
         return ListView.builder(
-          itemCount: item.data!.length,
+          itemCount: data.length,
           itemBuilder: (context, index) {
             return ListTile(
-              title: Text(
-                item.data![index].title,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-              ),
+              title: getQueryText(data[index].title, widget.query),
               subtitle: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${item.data![index].album}',
+                    '${data[index].album}',
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
                   Text(
-                    '${item.data![index].artist}',
+                    '${data[index].artist}',
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
@@ -94,7 +100,7 @@ class _SongsViewState extends State<SongsView> {
               leading: QueryArtworkWidget(
                 artworkBorder: BorderRadius.circular(5),
                 controller: _audioQuery,
-                id: item.data![index].id,
+                id: data[index].id,
                 type: ArtworkType.AUDIO,
               ),
               onTap: () {
@@ -112,6 +118,28 @@ class _SongsViewState extends State<SongsView> {
           },
         );
       },
+    );
+  }
+
+  RichText getQueryText(String title, String query) {
+    final startIndex = title.toLowerCase().indexOf(query.toLowerCase());
+    final endIndex = startIndex + query.length;
+    final boldText = title.substring(startIndex, endIndex);
+
+    return RichText(
+      text: TextSpan(
+        style: DefaultTextStyle.of(context).style,
+        children: [
+          if (startIndex > 0) ...[
+            TextSpan(text: title.substring(0, startIndex)),
+          ],
+          TextSpan(
+            text: boldText,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          TextSpan(text: title.substring(endIndex)),
+        ],
+      ),
     );
   }
 }

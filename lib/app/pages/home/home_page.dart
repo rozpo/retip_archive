@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:retip/app/pages/home/views/explore/explore_view.dart';
+import 'package:retip/app/pages/home/views/search/search_view.dart';
 import 'package:retip/app/pages/home/widgets/retip_icon.dart';
-import 'package:retip/app/pages/library/library_page.dart';
+import 'package:retip/app/pages/home/views/library/library_view.dart';
 import 'package:retip/app/pages/settings/settings_page.dart';
 import 'package:retip/core/l10n/retip_l10n.dart';
 
@@ -12,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  static const _initialIndex = 1;
+  static const _initialIndex = 0;
   int index = _initialIndex;
 
   final PageController pageController = PageController(
@@ -41,9 +43,9 @@ class _HomePageState extends State<HomePage> {
                 controller: pageController,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  LibraryPage(navigatorKey: _navigatorKey),
-                  const Placeholder(),
-                  const SettingsPage(),
+                  const ExploreView(),
+                  const SearchView(),
+                  LibraryView(navigatorKey: _navigatorKey),
                 ],
               ),
             'second' => Scaffold(
@@ -63,20 +65,24 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        unselectedItemColor: colorScheme.outline,
+        fixedColor: colorScheme.primary,
         items: [
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.library_music),
-            label: RetipL10n.of(context).library,
-          ),
           BottomNavigationBarItem(
             activeIcon: RetipIcon(color: colorScheme.primary),
             icon: RetipIcon(color: colorScheme.outline),
             label: RetipL10n.of(context).home,
           ),
           BottomNavigationBarItem(
-            activeIcon: const Icon(Icons.settings),
-            icon: const Icon(Icons.settings_outlined),
-            label: RetipL10n.of(context).settings,
+            activeIcon: const Icon(Icons.search),
+            icon: const Icon(Icons.search_outlined),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.library_music),
+            label: RetipL10n.of(context).library,
           ),
         ],
         currentIndex: index,
