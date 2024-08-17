@@ -34,7 +34,7 @@ class IntroPage extends StatelessWidget {
 }
 
 class _IntroWidget extends StatelessWidget {
-  const _IntroWidget({super.key});
+  const _IntroWidget();
 
   @override
   Widget build(BuildContext context) {

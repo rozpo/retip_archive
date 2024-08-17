@@ -51,8 +51,8 @@ class _LibraryViewState extends State<LibraryView> {
                   },
                   controller: _searchController,
                   hintText: 'Search library...',
-                  elevation: WidgetStatePropertyAll(0),
-                  shape: WidgetStatePropertyAll(LinearBorder()),
+                  elevation: const WidgetStatePropertyAll(0),
+                  shape: const WidgetStatePropertyAll(LinearBorder()),
                   autoFocus: true,
                   leading: const Icon(Icons.search),
                   trailing: [
@@ -64,7 +64,7 @@ class _LibraryViewState extends State<LibraryView> {
                           _searchController.text = '';
                         });
                       },
-                      icon: Icon(Icons.close),
+                      icon: const Icon(Icons.close),
                     ),
                   ],
                 )

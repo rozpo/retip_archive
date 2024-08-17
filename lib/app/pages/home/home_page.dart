@@ -3,7 +3,6 @@ import 'package:retip/app/pages/home/views/explore/explore_view.dart';
 import 'package:retip/app/pages/home/views/search/search_view.dart';
 import 'package:retip/app/pages/home/widgets/retip_icon.dart';
 import 'package:retip/app/pages/home/views/library/library_view.dart';
-import 'package:retip/app/pages/settings/settings_page.dart';
 import 'package:retip/core/l10n/retip_l10n.dart';
 
 class HomePage extends StatefulWidget {
@@ -75,9 +74,9 @@ class _HomePageState extends State<HomePage> {
             icon: RetipIcon(color: colorScheme.outline),
             label: RetipL10n.of(context).home,
           ),
-          BottomNavigationBarItem(
-            activeIcon: const Icon(Icons.search),
-            icon: const Icon(Icons.search_outlined),
+          const BottomNavigationBarItem(
+            activeIcon: Icon(Icons.search),
+            icon: Icon(Icons.search_outlined),
             label: 'Search',
           ),
           BottomNavigationBarItem(
